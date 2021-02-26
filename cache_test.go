@@ -2,12 +2,13 @@ package gincache
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/stretchr/testify/assert"
-	"github.com/trustwallet/blockatlas/pkg/ginutils"
+	"net/http"
 	"net/http/httptest"
 	"testing"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/stretchr/testify/assert"
 )
 
 func init() {
@@ -39,7 +40,7 @@ func TestWrite(t *testing.T) {
 func TestCachePage(t *testing.T) {
 	router := gin.New()
 	router.GET("/cache_ping", CacheMiddleware(time.Second*3, func(c *gin.Context) {
-		ginutils.RenderSuccess(c, "pong "+fmt.Sprint(time.Now().UnixNano()))
+		c.JSON(http.StatusOK, "pong "+fmt.Sprint(time.Now().UnixNano()))
 	}))
 
 	w1 := performRequest("GET", "/cache_ping", router)
@@ -53,7 +54,7 @@ func TestCachePage(t *testing.T) {
 func TestCachePageExpire(t *testing.T) {
 	router := gin.New()
 	router.GET("/cache_ping", CacheMiddleware(time.Second, func(c *gin.Context) {
-		ginutils.RenderSuccess(c, "pong "+fmt.Sprint(time.Now().UnixNano()))
+		c.JSON(http.StatusOK, "pong "+fmt.Sprint(time.Now().UnixNano()))
 	}))
 
 	w1 := performRequest("GET", "/cache_ping", router)

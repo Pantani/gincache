@@ -6,14 +6,15 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
-	"github.com/Pantani/errors"
-	"github.com/Pantani/logger"
-	"github.com/gin-gonic/gin"
-	"github.com/patrickmn/go-cache"
 	"io/ioutil"
 	"net/http"
 	"sync"
 	"time"
+
+	"github.com/Pantani/errors"
+	"github.com/Pantani/logger"
+	"github.com/gin-gonic/gin"
+	"github.com/patrickmn/go-cache"
 )
 
 var (
