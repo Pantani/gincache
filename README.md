@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/Pantani/gincache/branch/master/graph/badge.svg?token=SOD3RT9AOW)](https://codecov.io/gh/Pantani/gincache)
+
 # Simple cache for [gin](https://github.com/gin-gonic/gin)
 
 Simple memory cache for [gin](https://github.com/gin-gonic/gin) API. 
